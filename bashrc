@@ -1,8 +1,8 @@
 # SET PATH INFO
-export M2_HOME=/Users/brianmcelhany/Dev/Apache/apache-maven-3.2.3
+export M2_HOME=$HOME/Dev/Apache/apache-maven-3.2.3
 export M2=$M2_HOME/bin
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home
-export ANT_HOME=/Users/brianmcelhany/Dev/Apache/apache-ant/bin
+export ANT_HOME=$HOME/Dev/Apache/apache-ant/bin
 export MYSQL_HOME=/usr/local/mysql/bin
 export VIMRUNTIME=/usr/share/vim/vim73
 export CAKE_HOME=/Library/Cake/Console
