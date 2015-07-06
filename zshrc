@@ -1,7 +1,7 @@
 export EDITOR="vim"
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/brianmcelhany/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -51,7 +51,8 @@ plugins=(git zsh-syntax-highlighting)
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/brianmcelhany/Dev/Apache/apache-maven-3.2.3/bin:/usr/local/mysql/bin:/Library/Cake/Console"
+#export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/brianmcelhany/Dev/Apache/apache-maven-3.2.3/bin:/usr/local/mysql/bin:/Library/Cake/Console"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/Dev/Apache/apache-maven-3.2.3/bin:/usr/local/mysql/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -85,10 +86,10 @@ source /usr/local/Cellar/todo-txt/2.10/etc/bash_completion.d/todo_completion
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # SET PATH INFO
-export M2_HOME=/Users/brianmcelhany/Dev/Apache/apache-maven-3.2.3
+export M2_HOME=$HOME/Dev/Apache/apache-maven-3.2.3
 export M2=$M2_HOME/bin
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home
-export ANT_HOME=/Users/brianmcelhany/Dev/Apache/apache-ant/bin
+export ANT_HOME=$HOME/Dev/Apache/apache-ant/bin
 export MYSQL_HOME=/usr/local/mysql/bin
 export VIMRUNTIME=/usr/share/vim/vim73
 export CAKE_HOME=/Library/Cake/Console
