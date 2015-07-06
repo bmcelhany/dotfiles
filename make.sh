@@ -31,6 +31,8 @@ main() {
             ;;
         6) setUpOsxDefaults
             ;;
+        7) all
+            ;;
         8)  echo "Exiting..."
             exit 0;
             ;;
@@ -60,27 +62,100 @@ installOhMyZsh() {
 installCoreApps() {
 
     echo "Installing core apps via Homebrew and Cask..."
+    echo "";
 
     # Make sure we’re using the latest Homebrew
+    echo "Updating Homebrew..."
     brew update
+    echo "Done updating..."
+    echo "";
      
     # Upgrade any already-installed formulae
+    echo "Upgrading existing apps..."
     brew upgrade
+    echo "Done upgrading existing apps..."
+    echo "";
 
-    brew install ack
-    brew install ctags
-    brew install the_silver_searcher
-    brew install macvim
-    brew install zsh
+    echo "Installing command line tools..."
+    echo "";
 
-    install caskroom/cask/brew-cask
-    brew cask install iterm2
-    brew cask install sequel-pro
-    brew cask install intellij-idea
-    brew cask install sourcetree
-    brew cask install dropbox
+    read -p "Install ack? " yn
+    case $yn in
+        [Yy]* ) brew install ack;;
+        [Nn]* ) ;;
+        * ) echo "Invalid answer. Please select y or n"
+    esac
+
+    read -p "Install ctags? " yn
+    case $yn in
+        [Yy]* ) brew install ctags;;
+        [Nn]* ) ;;
+        * ) echo "Invalid answer. Please select y or n"
+    esac
+
+    read -p "Install Silver Searcher? " yn
+    case $yn in
+        [Yy]* ) brew install the_silver_searcher;;
+        [Nn]* ) ;;
+        * ) echo "Invalid answer. Please select y or n"
+    esac
+
+    read -p "Install MacVim? " yn
+    case $yn in
+        [Yy]* ) brew install macvim;;
+        [Nn]* ) ;;
+        * ) echo "Invalid answer. Please select y or n"
+    esac
+
+    read -p "Install Zsh? " yn
+    case $yn in
+        [Yy]* ) brew install zsh;;
+        [Nn]* ) ;;
+        * ) echo "Invalid answer. Please select y or n"
+    esac
+
+    echo "Installing Cask and GUI apps..."
+    brew install caskroom/cask/brew-cask
+    echo "";
+    
+    read -p "Install iTerm2? " yn
+    case $yn in
+        [Yy]* ) brew cask install iterm2;;
+        [Nn]* ) ;;
+        * ) echo "Invalid answer. Please select y or n"
+    esac
+
+    read -p "Install Sequal Pro? " yn
+    case $yn in
+        [Yy]* ) brew cask install sequel-pro;;
+        [Nn]* ) ;;
+        * ) echo "Invalid answer. Please select y or n"
+    esac
+
+    read -p "Install IntelliJ Idea? " yn
+    case $yn in
+        [Yy]* ) brew cask install intellij-idea;;
+        [Nn]* ) ;;
+        * ) echo "Invalid answer. Please select y or n"
+    esac
+
+    read -p "Install SourceTree? " yn
+    case $yn in
+        [Yy]* ) brew cask install sourcetree;;
+        [Nn]* ) ;;
+        * ) echo "Invalid answer. Please select y or n"
+    esac
+
+    read -p "Install DropBox? " yn
+    case $yn in
+        [Yy]* ) brew cask install dropbox;;
+        [Nn]* ) ;;
+        * ) echo "Invalid answer. Please select y or n"
+    esac
 
     # Remove outdated versions from the cellar
+    echo "";
+    echo "Cleaning up..."
     brew cleanup
 
     echo "Done"
@@ -122,19 +197,19 @@ setUpOsxDefaults() {
     # General UI/UX                                                               #
     ###############################################################################
 
-    # Dissable the sound effects on boot
+    echo "Dissable the sound effects on boot"
     sudo nvram SystemAudioVolume=" "
 
     ###############################################################################
     # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
     ###############################################################################
 
-    # Trackpad: enable tap to click for this user and for the login screen
+    echo "Trackpad: enable tap to click for this user and for the login screen"
     defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
     defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
     defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 
-    # Set a blazingly fast keyboard repeat rate
+    echo "Set a blazingly fast keyboard repeat rate"
     defaults write NSGlobalDomain KeyRepeat -int 0
 
     ###############################################################################
@@ -207,6 +282,29 @@ setUpOsxDefaults() {
 
     echo "Show status bar"
     defaults write com.apple.Safari ShowStatusBar -bool true
+
+    echo "Done"
+    main
+}
+
+all() {
+    echo "Installing Homebrew..."
+    installHomebrew
+
+    echo "Installing Oh-My-Zsh..."
+    installOhMyZsh
+
+    echo "Installing core apps..."
+    installCoreApps
+
+    echo "Configuring Vim..."
+    configureVim
+
+    echo "Setting up iTerm2..."
+    setUpIterm
+    
+    echo "Setting up OS X defaults..."
+    setUpOsxDefaults
 
     echo "Done"
     main
