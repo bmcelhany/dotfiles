@@ -13,7 +13,8 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " Stylized status line
-Plugin 'maciakl/vim-neatstatus'
+"Plugin 'maciakl/vim-neatstatus'
+Plugin 'bling/vim-airline'
 
 " Todo.txt
 Plugin 'freitass/todo.txt-vim'
@@ -46,11 +47,17 @@ Plugin 'nelstrom/vim-markdown-folding'
 Plugin 'scrooloose/nerdtree'
 
 " Colorscheme
-Plugin 'altercation/vim-colors-solarized'
+"Plugin 'altercation/vim-colors-solarized'
+
+Plugin 'Shougo/unite.vim'
 
 " Required
 call vundle#end()
 filetype plugin indent on
+
+" Statusbar
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
 
 " Tagbar
 noremap <F8> :TagbarToggle<CR>
@@ -86,6 +93,7 @@ set wildmenu            " Visual autocomplete for command menu
 set showmatch           " highlight matching braces
 set guioptions-=r		" Remove side scrollbars
 set guioptions-=L		" Remove top/bottom scrollbars
+set guioptions+=e       " Visual tabs in MacVim
 set showbreak=...       " Visual cue for wrapped lines
 set wrap                " Wrap text automatically
 set linebreak			" Don't wrap in the middle of a word
@@ -94,7 +102,7 @@ set laststatus=2        " Always show status line
 set cpoptions+=$        " Show a $ at end of boundary that we're changing
 set mouse=a             " Enable scrolling
 
-" Strip trailing whitespace (<leader> ss)
+" Strip trailing whitespace (<leader> ww)
 function! StripWhitespace()
 let save_cursor = getpos(".")
 let old_query = getreg('/')
@@ -102,7 +110,7 @@ let old_query = getreg('/')
 call setpos('.', save_cursor)
 call setreg('/', old_query)
 endfunction
-nnoremap <leader>ss :call StripWhitespace()<CR>
+nnoremap <leader>ww :call StripWhitespace()<CR>
 
 " Allow switching buffers without saving them first
 :set hidden
@@ -120,7 +128,8 @@ autocmd BufNewfile,BufReadPost *.ctp set filetype=php
 
 set background=dark
 syntax enable			" Syntax highligting
-colorscheme solarized
+"colorscheme solarized
+colorscheme diagonaltoast
 let g:solarized_termcolors=256
 
 " TABS ====================================================
@@ -157,7 +166,7 @@ vmap <Leader>P "+P
 let mapleader=","
 
 " jk to replace ESC
-inoremap jk <esc>
+"inoremap jk <esc>
 
 " Move between splits using standard motion keys
 nnoremap <C-J> <C-W>j
@@ -189,7 +198,7 @@ nmap <silent> <leader>p :set paste<cr>"*p:set nopaste<cr>
 
 " SEARCH ======================================================
 
-" Open Ag search (,f)
+" Open Ag search (,f): ! = don't open first match
 nnoremap <Leader>f <ESC>:Ag!<space>
 
 " Use Ag to search for tags (@context or +projects)
@@ -204,6 +213,10 @@ set hlsearch
 " Turn on highlighted matches
 nnoremap <Leader><space> :nohlsearch<CR>
 
+" Unite settings
+
+
+
 " FOLDING =====================================================
 
 set foldenable          " Enable folding
@@ -211,16 +224,3 @@ set foldlevelstart=10   " Open most folds by default
 set foldnestmax=10      " Max of 10 nested folds
 nnoremap <space> za     " Toggle folds using space bar
 set foldmethod=syntax   " Fold based on syntax highlighting
-
-" =============================================================
-" Tag search test
-" =============================================================
-function! TagSearch() 
-    let l:term = input("Search: ")
-    echom substitute(l:term, "#", "\\\#", "") 
-    "if term =~ "#"
-    "    echom "Ag '\\\".term."'""
-    "else
-    "    echom "Searching for a word"
-    "endif
-endfunction

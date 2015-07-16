@@ -92,8 +92,7 @@ export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home
 export ANT_HOME=$HOME/Dev/Apache/apache-ant/bin
 export MYSQL_HOME=/usr/local/mysql/bin
 export VIMRUNTIME=/usr/share/vim/vim73
-export CAKE_HOME=/Library/Cake/Console
-export PATH=$PATH:$M2:$MYSQL_HOME:$CAKE_HOME
+export PATH=$PATH:$M2:$MYSQL_HOME
 
 # ENABLE NICE COLORS IN THE TERMINAL
 export CLICOLOR=1
