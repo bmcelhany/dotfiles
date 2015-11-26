@@ -16,9 +16,6 @@ Plugin 'gmarik/Vundle.vim'
 "Plugin 'maciakl/vim-neatstatus'
 Plugin 'bling/vim-airline'
 
-" Todo.txt
-Plugin 'freitass/todo.txt-vim'
-
 " Tagbar
 Plugin 'majutsushi/tagbar'
 
@@ -26,7 +23,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'tpope/vim-fugitive'
 
 " XML auto-complete stuff
-Plugin 'sukima/xmledit'
+"Plugin 'sukima/xmledit'
 
 " Auto-complete brackets, quotes, etc
 Plugin 'Raimondi/delimitMate'
@@ -37,19 +34,19 @@ Plugin 'rking/ag.vim'
 " File name search
 Plugin 'kien/ctrlp.vim'
 
-" Fancy startup screen
-Plugin 'mhinz/vim-startify'
-
 " Markdown folding
 Plugin 'nelstrom/vim-markdown-folding'
 
 " File browser
 Plugin 'scrooloose/nerdtree'
 
-" Colorscheme
-"Plugin 'altercation/vim-colors-solarized'
+" Colorschemes
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'blueshirts/darcula'
+Plugin 'guns/xterm-color-table.vim'
 
-Plugin 'Shougo/unite.vim'
+" Enhanced Javascript Syntax
+Plugin 'jelera/vim-javascript-syntax'
 
 " Required
 call vundle#end()
@@ -63,20 +60,12 @@ let g:airline#extensions#tabline#enabled = 1
 noremap <F8> :TagbarToggle<CR>
 
 " File Explorer
-"map <F2> :E .<CR>
-"let g:netrw_liststyle=3
 map <F2> :NERDTreeToggle<CR>
-
-" Startify Startup Screen
-" =======================================================
-
-let g:startify_list_order = [['My Saved Sessions'],'sessions', ['Bookmarks'], 'bookmarks',  ['Recent Files'], 'files', ['Recent Directories'], 'dir']
-let g:startify_bookmarks = ['~/.vimrc','~/Documents/Notebook','~/Documents/Notebook/Notes/scratchpad.md','~/Documents/Notebook/Local/Scrum.md']
 
 " Gui
 " ========================================================
 set encoding=utf-8
-set guifont=DejaVu\ Sans\ Mono\ for\ Powerline
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h15
 
 " GENERAL SETTINGS =======================================
 
@@ -86,6 +75,7 @@ if exists("&wildignorecase") " Case-insensitive tab completion
 set wildignorecase
 endif
 set cursorline			" Highlight the current line
+
 set number				" Show line numbers
 set ruler               " Show line/col status
 set autoindent			" Automatically indent the next line
@@ -128,8 +118,7 @@ autocmd BufNewfile,BufReadPost *.ctp set filetype=php
 
 set background=dark
 syntax enable			" Syntax highligting
-"colorscheme solarized
-colorscheme diagonaltoast
+colorscheme darcula
 let g:solarized_termcolors=256
 
 " TABS ====================================================
@@ -166,6 +155,7 @@ vmap <Leader>P "+P
 let mapleader=","
 
 " jk to replace ESC
+" No longer used as I re-mapped CAPSLOCK to ESC
 "inoremap jk <esc>
 
 " Move between splits using standard motion keys
@@ -213,9 +203,8 @@ set hlsearch
 " Turn on highlighted matches
 nnoremap <Leader><space> :nohlsearch<CR>
 
-" Unite settings
-
-
+" Type CTRL-C to correctly place cursor after delimitmate adds closing
+imap <C-c> <CR><Esc>O
 
 " FOLDING =====================================================
 
@@ -224,3 +213,12 @@ set foldlevelstart=10   " Open most folds by default
 set foldnestmax=10      " Max of 10 nested folds
 nnoremap <space> za     " Toggle folds using space bar
 set foldmethod=syntax   " Fold based on syntax highlighting
+
+hi link markdownH1 Title
+hi link markdownHeadingDelimiter Title
+
+" Change cursor shape between INSERT and NORMAL mode when using iTerm2
+if $TERM_PROGRAM =~ "iTerm"
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
