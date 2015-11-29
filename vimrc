@@ -12,18 +12,11 @@ call vundle#begin()
 " Bundle manager
 Plugin 'gmarik/Vundle.vim'
 
-" Stylized status line
-"Plugin 'maciakl/vim-neatstatus'
-Plugin 'bling/vim-airline'
-
 " Tagbar
 Plugin 'majutsushi/tagbar'
 
 " Git
 Plugin 'tpope/vim-fugitive'
-
-" XML auto-complete stuff
-"Plugin 'sukima/xmledit'
 
 " Auto-complete brackets, quotes, etc
 Plugin 'Raimondi/delimitMate'
@@ -44,17 +37,24 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'blueshirts/darcula'
 Plugin 'guns/xterm-color-table.vim'
+Plugin 'trusktr/seti.vim'
 
-" Enhanced Javascript Syntax
-Plugin 'jelera/vim-javascript-syntax'
+" JSON
+Plugin 'elzr/vim-json'
+
+" JavaScript
+Plugin 'pangloss/vim-javascript'
+
+" Status line
+Plugin 'maciakl/vim-neatstatus'
 
 " Required
 call vundle#end()
+
 filetype plugin indent on
 
-" Statusbar
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
+" Don't conceal the double-quotes in JSON
+let g:vim_json_syntax_conceal = 0
 
 " Tagbar
 noremap <F8> :TagbarToggle<CR>
@@ -64,7 +64,7 @@ map <F2> :NERDTreeToggle<CR>
 
 " Gui
 " ========================================================
-set encoding=utf-8
+"set encoding=utf-8
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h15
 
 " GENERAL SETTINGS =======================================
@@ -118,13 +118,13 @@ autocmd BufNewfile,BufReadPost *.ctp set filetype=php
 
 set background=dark
 syntax enable			" Syntax highligting
-colorscheme darcula
+colorscheme seti
 let g:solarized_termcolors=256
 
 " TABS ====================================================
 
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
 
 " MAPPINGS ================================================
@@ -186,6 +186,9 @@ nnoremap <Leader>ev :vsp $MYVIMRC<CR>
 " Enable paste from external app without auto-indent
 nmap <silent> <leader>p :set paste<cr>"*p:set nopaste<cr>
 
+" Prettify JSON
+nnoremap <Leader>j :%!python -m json.tool<CR>gg=G<CR>
+
 " SEARCH ======================================================
 
 " Open Ag search (,f): ! = don't open first match
@@ -216,9 +219,3 @@ set foldmethod=syntax   " Fold based on syntax highlighting
 
 hi link markdownH1 Title
 hi link markdownHeadingDelimiter Title
-
-" Change cursor shape between INSERT and NORMAL mode when using iTerm2
-if $TERM_PROGRAM =~ "iTerm"
-    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-endif
