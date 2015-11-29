@@ -19,7 +19,8 @@ Plugin 'majutsushi/tagbar'
 Plugin 'tpope/vim-fugitive'
 
 " Auto-complete brackets, quotes, etc
-Plugin 'Raimondi/delimitMate'
+"Plugin 'Raimondi/delimitMate'
+Plugin 'jiangmiao/auto-pairs'
 
 " Search
 Plugin 'rking/ag.vim'
@@ -79,6 +80,7 @@ set cursorline			" Highlight the current line
 set number				" Show line numbers
 set ruler               " Show line/col status
 set autoindent			" Automatically indent the next line
+"set smartindent         
 set wildmenu            " Visual autocomplete for command menu
 set showmatch           " highlight matching braces
 set guioptions-=r		" Remove side scrollbars
@@ -123,9 +125,8 @@ let g:solarized_termcolors=256
 
 " TABS ====================================================
 
-set tabstop=2
-set shiftwidth=2
 set expandtab
+set autoindent
 
 " MAPPINGS ================================================
 
@@ -193,9 +194,6 @@ nnoremap <Leader>j :%!python -m json.tool<CR>gg=G<CR>
 
 " Open Ag search (,f): ! = don't open first match
 nnoremap <Leader>f <ESC>:Ag!<space>
-
-" Use Ag to search for tags (@context or +projects)
-nnoremap <Leader>t <ESC>:Ag! -Q -l<Space>
 
 " Incrementally search as characters are entered
 set incsearch
