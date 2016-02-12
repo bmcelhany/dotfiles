@@ -99,7 +99,7 @@ export CLICOLOR=1
 export TERM=xterm-256color
 
 # ALIASES
-alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
+alias v='/Applications/MacVim.app/Contents/MacOS/Vim'
 alias mysqlstart='sudo /usr/local/mysql/support-files/mysql.server start'
 alias mysqlstop='sudo /usr/local/mysql/support-files/mysql.server stop'
 alias tomcatstart='/Library/Tomcat/bin/startup.sh'
@@ -127,3 +127,5 @@ fancy-ctrl-z () {
 }
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
+
+test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh

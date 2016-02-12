@@ -19,7 +19,6 @@ Plugin 'majutsushi/tagbar'
 Plugin 'tpope/vim-fugitive'
 
 " Auto-complete brackets, quotes, etc
-"Plugin 'Raimondi/delimitMate'
 Plugin 'jiangmiao/auto-pairs'
 
 " Search
@@ -37,8 +36,8 @@ Plugin 'scrooloose/nerdtree'
 " Colorschemes
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'blueshirts/darcula'
-Plugin 'guns/xterm-color-table.vim'
-Plugin 'trusktr/seti.vim'
+Plugin 'joshdick/onedark.vim'
+Plugin 'w0ng/vim-hybrid'
 
 " JSON
 Plugin 'elzr/vim-json'
@@ -48,6 +47,11 @@ Plugin 'pangloss/vim-javascript'
 
 " Status line
 Plugin 'maciakl/vim-neatstatus'
+
+" Distraction-free writing
+Plugin 'junegunn/goyo.vim'
+Plugin 'junegunn/limelight.vim'
+Plugin 'plasticboy/vim-markdown'
 
 " Required
 call vundle#end()
@@ -72,6 +76,7 @@ set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h15
 
 set timeoutlen=1000
 set ttimeoutlen=0
+set ignorecase
 if exists("&wildignorecase") " Case-insensitive tab completion
 set wildignorecase
 endif
@@ -120,13 +125,15 @@ autocmd BufNewfile,BufReadPost *.ctp set filetype=php
 
 set background=dark
 syntax enable			" Syntax highligting
-colorscheme seti
-let g:solarized_termcolors=256
+let g:hybrid_custom_term_colors = 1
+colorscheme hybrid
 
 " TABS ====================================================
 
 set expandtab
 set autoindent
+set shiftwidth=4
+set tabstop=4
 
 " MAPPINGS ================================================
 
@@ -135,9 +142,6 @@ set autoindent
 " belongs to -- very useful for figuring out what to change as far as
 " syntax highlighting goes.
 nmap <silent> ,qq :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
-
-" Hit <ENTER> in normal mode to insert blank line
-nnoremap <ENTER> o<ESC>
 
 " Map Ctrl-P
 let g:ctrlp_map = '<c-p>'
@@ -214,6 +218,3 @@ set foldlevelstart=10   " Open most folds by default
 set foldnestmax=10      " Max of 10 nested folds
 nnoremap <space> za     " Toggle folds using space bar
 set foldmethod=syntax   " Fold based on syntax highlighting
-
-hi link markdownH1 Title
-hi link markdownHeadingDelimiter Title
