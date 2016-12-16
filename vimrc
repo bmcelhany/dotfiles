@@ -33,11 +33,17 @@ Plugin 'nelstrom/vim-markdown-folding'
 " File browser
 Plugin 'scrooloose/nerdtree'
 
+" Autoformat markdown tables
+Plugin 'dhruvasagar/vim-table-mode'
+
 " Colorschemes
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'blueshirts/darcula'
 Plugin 'joshdick/onedark.vim'
 Plugin 'w0ng/vim-hybrid'
+Plugin 'bmcelhany/diagonaltoast'
+Plugin 'chriskempson/base16-vim'
+Plugin 'jacoborus/tender'
 
 " JSON
 Plugin 'elzr/vim-json'
@@ -45,12 +51,7 @@ Plugin 'elzr/vim-json'
 " JavaScript
 Plugin 'pangloss/vim-javascript'
 
-" Status line
-Plugin 'maciakl/vim-neatstatus'
-
-" Distraction-free writing
-Plugin 'junegunn/goyo.vim'
-Plugin 'junegunn/limelight.vim'
+" Markdown highlighting-free writing
 Plugin 'plasticboy/vim-markdown'
 
 " Required
@@ -61,11 +62,14 @@ filetype plugin indent on
 " Don't conceal the double-quotes in JSON
 let g:vim_json_syntax_conceal = 0
 
+" File exporer
+noremap <F2> :NERDTreeToggle<CR>
+
 " Tagbar
 noremap <F8> :TagbarToggle<CR>
 
-" File Explorer
-map <F2> :NERDTreeToggle<CR>
+" Remap ESC
+imap jk <ESC>
 
 " Gui
 " ========================================================
@@ -81,11 +85,10 @@ if exists("&wildignorecase") " Case-insensitive tab completion
 set wildignorecase
 endif
 set cursorline			" Highlight the current line
-
 set number				" Show line numbers
 set ruler               " Show line/col status
 set autoindent			" Automatically indent the next line
-"set smartindent         
+"set smartindent
 set wildmenu            " Visual autocomplete for command menu
 set showmatch           " highlight matching braces
 set guioptions-=r		" Remove side scrollbars
@@ -126,7 +129,7 @@ autocmd BufNewfile,BufReadPost *.ctp set filetype=php
 set background=dark
 syntax enable			" Syntax highligting
 let g:hybrid_custom_term_colors = 1
-colorscheme hybrid
+colorscheme diagonaltoast
 
 " TABS ====================================================
 
@@ -149,7 +152,8 @@ let g:ctrlp_cmd = 'CtrlP'
 
 " Enable copy/paste between VIM and other apps
 set clipboard=unnamed
-vmap <Leader>y "+y
+vmap <Leader>y "*y
+vmap <Leader>yy "*Y
 vmap <Leader>d "+d
 nmap <Leader>p "+p
 nmap <Leader>P "+P
@@ -159,9 +163,8 @@ vmap <Leader>P "+P
 " Set the leader to the comma
 let mapleader=","
 
-" jk to replace ESC
-" No longer used as I re-mapped CAPSLOCK to ESC
-"inoremap jk <esc>
+" Toggle tablemode
+nmap <Leader>tm :TableModeToggle<CR>
 
 " Move between splits using standard motion keys
 nnoremap <C-J> <C-W>j
@@ -171,6 +174,7 @@ nnoremap <C-L> <C-W>l
 
 " Move between buffers using TAB
 :nnoremap <Tab> :bnext<CR>
+
 :nnoremap <S-Tab> :bprevious<CR>
 
 " Shortcut to change to current working directory for new files

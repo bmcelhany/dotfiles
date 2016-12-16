@@ -52,13 +52,11 @@ plugins=(git zsh-syntax-highlighting)
 # User configuration
 
 #export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/brianmcelhany/Dev/Apache/apache-maven-3.2.3/bin:/usr/local/mysql/bin:/Library/Cake/Console"
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/Dev/Apache/apache-maven-3.2.3/bin:/usr/local/mysql/bin"
+export
+PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/Dev/Apache/apache-maven-3.2.3/bin:/usr/local/mysql/bin:/Library/TeX/texbin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
-
-# Enable todo.txt auto-completion
-source /usr/local/Cellar/todo-txt/2.10/etc/bash_completion.d/todo_completion
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -91,7 +89,7 @@ export M2=$M2_HOME/bin
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home
 export ANT_HOME=$HOME/Dev/Apache/apache-ant/bin
 export MYSQL_HOME=/usr/local/mysql/bin
-export VIMRUNTIME=/usr/share/vim/vim73
+export VIMRUNTIME=/usr/share/vim/vim74
 export PATH=$PATH:$M2:$MYSQL_HOME
 
 # ENABLE NICE COLORS IN THE TERMINAL
@@ -99,6 +97,7 @@ export CLICOLOR=1
 export TERM=xterm-256color
 
 # ALIASES
+alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
 alias v='/Applications/MacVim.app/Contents/MacOS/Vim'
 alias mysqlstart='sudo /usr/local/mysql/support-files/mysql.server start'
 alias mysqlstop='sudo /usr/local/mysql/support-files/mysql.server stop'
@@ -109,7 +108,6 @@ alias zookeeperstop='/usr/local/Cellar/zookeeper/3.4.6_1/bin/zkServer stop'
 alias ls='ls -GFlash'
 alias dw='cd ~/Dev/WorkSpaces'
 alias dn='cd ~/Documents/Notebook'
-alias t='todo.sh -d ~/.todo.cfg'
 
 # Show dirty state in prompt when in Git repos
 export GIT_PS1_SHOWDIRTYSTATE=1
@@ -127,5 +125,23 @@ fancy-ctrl-z () {
 }
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
+
+# Clear Bandhub cache and re-launch Chrome
+clearBandhubCache() {
+    ECHO "Closing Chrome..."
+    killall 'Google Chrome'
+    ECHO "Navigating to cache directory: ~/Library/Caches/Bandhub"
+    cd ~/Library/Caches/Bandhub
+    ECHO "Deleting ogg files..."
+    rm *ogg*
+    ECHO "Deleting m4a files..."
+    rm *m4a*
+    ECHO "Deleting mp4 files..."
+    rm *mp4*
+    ECHO "Re-starting Chrome..."
+    /usr/bin/open -a "/Applications/Google Chrome.app" 'https://bandhub.com'
+    ECHO "Complete!"
+}
+alias bh="clearBandhubCache"
 
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
