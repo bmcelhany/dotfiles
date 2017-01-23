@@ -1,4 +1,4 @@
-export EDITOR="vim"
+#export EDITOR="vim"
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -7,8 +7,8 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="gnzh"
-
+#ZSH_THEME="gnzh"
+#
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -51,12 +51,10 @@ plugins=(git zsh-syntax-highlighting)
 
 # User configuration
 
-#export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/brianmcelhany/Dev/Apache/apache-maven-3.2.3/bin:/usr/local/mysql/bin:/Library/Cake/Console"
-export
-PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/Dev/Apache/apache-maven-3.2.3/bin:/usr/local/mysql/bin:/Library/TeX/texbin"
+#export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/Dev/Apache/apache-maven-3.2.3/bin:/usr/local/mysql/bin:/Library/TeX/texbin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
-source $ZSH/oh-my-zsh.sh
+#source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -84,64 +82,47 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # SET PATH INFO
-export M2_HOME=$HOME/Dev/Apache/apache-maven-3.2.3
-export M2=$M2_HOME/bin
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home
-export ANT_HOME=$HOME/Dev/Apache/apache-ant/bin
-export MYSQL_HOME=/usr/local/mysql/bin
-export VIMRUNTIME=/usr/share/vim/vim74
-export PATH=$PATH:$M2:$MYSQL_HOME
+#export M2_HOME=$HOME/Dev/Apache/apache-maven-3.2.3
+#export M2=$M2_HOME/bin
+#export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home
+#export ANT_HOME=$HOME/Dev/Apache/apache-ant/bin
+#export MYSQL_HOME=/usr/local/mysql/bin
+#export VIMRUNTIME=/usr/share/vim/vim74
+#export PATH=$PATH:$M2:$MYSQL_HOME
 
 # ENABLE NICE COLORS IN THE TERMINAL
-export CLICOLOR=1
-export TERM=xterm-256color
-
-# ALIASES
-alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
-alias v='/Applications/MacVim.app/Contents/MacOS/Vim'
-alias mysqlstart='sudo /usr/local/mysql/support-files/mysql.server start'
-alias mysqlstop='sudo /usr/local/mysql/support-files/mysql.server stop'
-alias tomcatstart='/Library/Tomcat/bin/startup.sh'
-alias tomcatstop='/Library/Tomcat/bin/shutdown.sh'
-alias zookeeperstart='/usr/local/Cellar/zookeeper/3.4.6_1/bin/zkServer start'
-alias zookeeperstop='/usr/local/Cellar/zookeeper/3.4.6_1/bin/zkServer stop'
-alias ls='ls -GFlash'
-alias dw='cd ~/Dev/WorkSpaces'
-alias dn='cd ~/Documents/Notebook'
+#export CLICOLOR=1
+#export TERM=xterm-256color
+#
+## ALIASES
+#alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
+#alias v='/Applications/MacVim.app/Contents/MacOS/Vim'
+#alias mysqlstart='sudo /usr/local/mysql/support-files/mysql.server start'
+#alias mysqlstop='sudo /usr/local/mysql/support-files/mysql.server stop'
+#alias tomcatstart='/Library/Tomcat/bin/startup.sh'
+#alias tomcatstop='/Library/Tomcat/bin/shutdown.sh'
+#alias zookeeperstart='/usr/local/Cellar/zookeeper/3.4.6_1/bin/zkServer start'
+#alias zookeeperstop='/usr/local/Cellar/zookeeper/3.4.6_1/bin/zkServer stop'
+#alias ls='ls -GFlash'
+#alias dw='cd ~/Dev/WorkSpaces'
+#alias dn='cd ~/Documents/Notebook'
+#alias bh="/Users/brianmcelhany/Documents/Guitar/clearbandhubcache.command"
 
 # Show dirty state in prompt when in Git repos
-export GIT_PS1_SHOWDIRTYSTATE=1
+#export GIT_PS1_SHOWDIRTYSTATE=1
 
 # CTRL-Z will "minimize" VIM. Instead of typing fg<ENTER> to
 # bring it back to the foreground, just hit CTRL-Z again
-fancy-ctrl-z () {
-    if [[ $#BUFFER -eq 0 ]]; then
-        BUFFER="fg"
-         zle accept-line
-    else
-         zle push-input
-         zle clear-screen
-    fi
-}
-zle -N fancy-ctrl-z
-bindkey '^Z' fancy-ctrl-z
-
-# Clear Bandhub cache and re-launch Chrome
-clearBandhubCache() {
-    ECHO "Closing Chrome..."
-    killall 'Google Chrome'
-    ECHO "Navigating to cache directory: ~/Library/Caches/Bandhub"
-    cd ~/Library/Caches/Bandhub
-    ECHO "Deleting ogg files..."
-    rm *ogg*
-    ECHO "Deleting m4a files..."
-    rm *m4a*
-    ECHO "Deleting mp4 files..."
-    rm *mp4*
-    ECHO "Re-starting Chrome..."
-    /usr/bin/open -a "/Applications/Google Chrome.app" 'https://bandhub.com'
-    ECHO "Complete!"
-}
-alias bh="clearBandhubCache"
-
-test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
+#jfancy-ctrl-z () {
+#    if [[ $#BUFFER -eq 0 ]]; then
+#        BUFFER="fg"
+#         zle accept-line
+#    else
+#         zle push-input
+#         zle clear-screen
+#    fi
+#}
+#zle -N fancy-ctrl-z
+#bindkey '^Z' fancy-ctrl-z
+#
+#test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh

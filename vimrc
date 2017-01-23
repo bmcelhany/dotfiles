@@ -160,6 +160,9 @@ nmap <Leader>P "+P
 vmap <Leader>p "+p
 vmap <Leader>P "+P
 
+" Copy full path of file in current buffer
+nmap <Leader>cp :let @*=expand("%:p")<CR>
+
 " Set the leader to the comma
 let mapleader=","
 
