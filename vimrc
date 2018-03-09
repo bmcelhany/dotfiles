@@ -44,6 +44,7 @@ Plugin 'w0ng/vim-hybrid'
 Plugin 'bmcelhany/diagonaltoast'
 Plugin 'chriskempson/base16-vim'
 Plugin 'jacoborus/tender'
+Plugin 'morhetz/gruvbox'
 
 " JSON
 Plugin 'elzr/vim-json'
@@ -73,8 +74,8 @@ imap jk <ESC>
 
 " Gui
 " ========================================================
-"set encoding=utf-8
-set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h15
+set encoding=utf-8
+set guifont=SF\ Mono:h15
 
 " GENERAL SETTINGS =======================================
 
@@ -127,9 +128,9 @@ autocmd BufNewfile,BufReadPost *.ctp set filetype=php
 " COLORS ==================================================
 
 set background=dark
-syntax enable			" Syntax highligting
-let g:hybrid_custom_term_colors = 1
-colorscheme diagonaltoast
+syntax enable
+"let g:hybrid_custom_term_colors = 1
+colorscheme hybrid
 
 " TABS ====================================================
 
@@ -152,13 +153,13 @@ let g:ctrlp_cmd = 'CtrlP'
 
 " Enable copy/paste between VIM and other apps
 set clipboard=unnamed
-vmap <Leader>y "*y
-vmap <Leader>yy "*Y
-vmap <Leader>d "+d
-nmap <Leader>p "+p
-nmap <Leader>P "+P
-vmap <Leader>p "+p
-vmap <Leader>P "+P
+"vmap <Leader>y "*y
+"vmap <Leader>yy "*Y
+"vmap <Leader>d "+d
+"nmap <Leader>p "+p
+"nmap <Leader>P "+P
+"vmap <Leader>p "+p
+"vmap <Leader>P "+P
 
 " Copy full path of file in current buffer
 nmap <Leader>cp :let @*=expand("%:p")<CR>
@@ -218,6 +219,10 @@ nnoremap <Leader><space> :nohlsearch<CR>
 " Type CTRL-C to correctly place cursor after delimitmate adds closing
 imap <C-c> <CR><Esc>O
 
+" Insert current date
+:nnoremap <F4> "=strftime("%a %b %d, %Y")<CR>P
+:inoremap <F4> <C-R>=strftime("%a %b %d, %Y")<CR>
+
 " FOLDING =====================================================
 
 set foldenable          " Enable folding
@@ -225,3 +230,9 @@ set foldlevelstart=10   " Open most folds by default
 set foldnestmax=10      " Max of 10 nested folds
 nnoremap <space> za     " Toggle folds using space bar
 set foldmethod=syntax   " Fold based on syntax highlighting
+
+" Change cursor shape between insert and normal mode in iTerm2.app
+if $TERM_PROGRAM =~ "iTerm"
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
+endif
